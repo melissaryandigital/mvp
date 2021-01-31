@@ -1,0 +1,27 @@
+{
+  "name": "coffee-crossing",
+  "version": "1.0.0",
+  "description": "A logbook for coffee lovers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server.js localhost 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melissaryandigital/rpt26-mvp.git"
+  },
+  "author": "Melissa Ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melissaryandigital/rpt26-mvp/issues"
+  },
+  "homepage": "https://github.com/melissaryandigital/rpt26-mvp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.1"
+  }
+}
