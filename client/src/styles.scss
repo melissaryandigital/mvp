@@ -1,5 +1,38 @@
 $color: red;
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+h2 {
+  margin-bottom:20px;
+}
+
 p {
   color: $color;
+}
+
+img {
+  width: 400px;
+}
+
+#coffeeInput {
+  width: 500px;
+
+  td {
+    height: 30px;
+  }
+
+  input {
+    float: right;
+  }
+
+  button {
+    float:right;
+  }
+}
+
+td {
+  width: 300px;
 }
