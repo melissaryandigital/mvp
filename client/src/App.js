@@ -18,10 +18,10 @@ const App = (props) => {
         <img src={Img} />
         <h2>Add your coffee!</h2>
         <CoffeeForm />
-        <h2>What I've Tried So Far:</h2>
+        <h2>What I've Tried:</h2>
         <table>
           <tbody>
-            {props.coffees.map(coffee => <tr><td>{coffee.roaster}</td><td>{coffee.roasterLocation}</td><td>{coffee.name}</td><td>{coffee.process}</td></tr>)}
+            {props.coffees.map(coffee => <tr><td>{coffee.roaster}</td><td>{coffee.roasterLocation}</td><td>{coffee.coffeeName}</td><td>{coffee.process}</td></tr>)}
           </tbody>
         </table>
         <div>

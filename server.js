@@ -9,41 +9,46 @@ const fs = require('fs');
 
 const multer = require('multer');
 
-const MongoClient = require('mongodb').MongoClient;
+// Database
+//const MongoClient = require('mongodb').MongoClient;
 const db = require('./db');
 
-const Coffee = require('./client/coffee');
+//const coffeeData = require('./models/index.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
-app.use(express.static('client'));
+app.use(express.static(path.join(__dirname, './client/build')));
+
+
+Todo.readAll: function(callback) {
+  return $.ajax({
+    url: this.url,
+    type: 'GET',
+    dataType: 'json',
+    success: callback
+  });
+}
 
 
 
 
-app.listen(port, () => {
-  console.log(`Coffee Crossing listening at http://localhost:${port}`);
-});
-
-
-//
-
-
-//
-
-
-// Get request to index queries database
 app.get('/', (req, res) => {
 
-  Coffee.readAll((err, coffees) => {
+  Todo.readAll((err, todos) => {
     if (err) {
       res.sendStatus(400);
     } else {
-      res.status(200).json(coffees);
+      res.status(200).json(todos);
     }
-  })
+  });
 
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
 
-  //db.coffees.find()
+app.post('/'), (req, res) => {
 
+}
+
+app.listen(port, () => {
+  console.log(`Coffee Crossing Server listening at http://localhost:${port}`);
 });
