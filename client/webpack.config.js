@@ -6,6 +6,11 @@ const webpack = require('webpack');
 
 module.exports = {
   //entry: '.src/index.js',
+  watch: true,
+
+  watchOptions: {
+    ignored: '**/node_modules'
+  },
 
   output: {
     path: path.resolve(__dirname, "build"),

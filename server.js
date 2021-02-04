@@ -25,21 +25,24 @@ app.use(express.static(path.join(__dirname, './client/build')));
 
 var coffeeData = [
   {
+    id: 1,
     roaster: 'Verve',
     roasterLocation: 'Santa Cruz, CA',
-    name: 'Jose Guzman',
+    coffeeName: 'Jose Guzman',
     process: 'washed',
   },
   {
+    id: 2,
     roaster: 'Passenger',
     roasterLocation: 'Lancaster, PA',
-    name: 'Gesha Village',
+    coffeeName: 'Gesha Village',
     process: 'natural',
   },
   {
+    id: 3,
     roaster: 'Cadenza',
     roasterLocation: 'Houston, TX',
-    name: 'Colombia Huila',
+    coffeeName: 'Colombia Huila',
     process: 'honey',
   }
 ];
@@ -47,8 +50,9 @@ var coffeeData = [
 
 app.get('/coffees', (req, res) => {
 
+  res.header('Access-Control-Allow-Origin', '*');
   console.log(coffeeData);
-  JSON.stringify(coffeeData);
+  // JSON.stringify(coffeeData);
   res.send(coffeeData);
 
   // MongoClient.connect("mongodb://localhost:27017/cc", function (err, db) {
