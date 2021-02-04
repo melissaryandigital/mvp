@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Img from './sunrise.jpg';
+import $ from 'jquery';
 import './styles.scss';
 import App from './App.js';
-import coffeeData from '../../models/index.js'
+//import coffeeData from '../../models/index.js'
+
 
 // var coffeeData = [
 //   {
@@ -26,5 +27,21 @@ import coffeeData from '../../models/index.js'
 //   }
 // ];
 
+console.log('before ajax');
 
-ReactDOM.render(<App coffees={coffeeData} />, document.getElementById("app"));
+$.ajax({
+  url: 'http://localhost:7100/coffees',
+  type: 'GET',
+  success: function(err, data) {
+    console.log('success: ', data);
+  },
+  error: function (error) {
+    console.error('Failed to get data', error);
+  }
+});
+
+
+
+ReactDOM.render(<App />, document.getElementById("app"));
+
+// ReactDOM.render(<App coffees={coffeeData} />, document.getElementById("app"));
