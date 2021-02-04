@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import './styles.scss';
 import App from './App.js';
-//import coffeeData from '../../models/index.js'
-
 
 // var coffeeData = [
 //   {
@@ -27,20 +25,20 @@ import App from './App.js';
 //   }
 // ];
 
-console.log('before ajax');
 
-$.ajax({
-  url: 'http://localhost:7100/coffees',
-  type: 'GET',
-  success: function(err, data) {
-    console.log('success: ', data);
-  },
-  error: function (error) {
-    console.error('Failed to get data', error);
-  }
-});
-
-
+// var getCoffees = (callback) => {
+//   $.ajax({
+//     url: 'http://localhost:7100/coffees',
+//     type: 'GET',
+//     success: function (response) {
+//       console.log('hi');
+//       console.log('success: ', response);
+//     },
+//     error: function (error) {
+//       console.error('Failed to get data', error);
+//     }
+//   });
+// };
 
 ReactDOM.render(<App />, document.getElementById("app"));
 

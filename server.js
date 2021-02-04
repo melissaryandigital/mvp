@@ -48,6 +48,7 @@ var coffeeData = [
 app.get('/coffees', (req, res) => {
 
   console.log(coffeeData);
+  JSON.stringify(coffeeData);
   res.send(coffeeData);
 
   // MongoClient.connect("mongodb://localhost:27017/cc", function (err, db) {

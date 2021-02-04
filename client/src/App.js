@@ -10,33 +10,19 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      // coffeeData: [
-      //   {
-      //     id: 1,
-      //     roaster: 'Verve',
-      //     roasterLocation: 'Santa Cruz, CA',
-      //     name: 'Jose Guzman',
-      //     process: 'washed',
-      //   },
-      //   {
-      //     id: 2,
-      //     roaster: 'Passenger',
-      //     roasterLocation: 'Lancaster, PA',
-      //     name: 'Gesha Village',
-      //     process: 'natural',
-      //   },
-      //   {
-      //     id: 3,
-      //     roaster: 'Cadenza',
-      //     roasterLocation: 'Houston, TX',
-      //     name: 'Colombia Huila',
-      //     process: 'honey',
-      //   }
-      // ]
-
+      coffeeData: []
     }
   }
 
+  componentDidMount() {
+    fetch('http://localhost:7100/coffees')
+      .then(response => response.json())
+      .then(json => {
+        console.log('in here');
+        this.setState({ coffeeData: json });
+
+      });
+  }
 
   render() {
     return (
@@ -48,6 +34,8 @@ class App extends React.Component {
           <CoffeeForm />
           <h2>What I've Tried:</h2>
           <table>
+            <thead>
+            </thead>
             <tbody>
               {this.state.coffeeData.map(coffee =>
                 <tr>
