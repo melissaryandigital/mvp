@@ -25,21 +25,18 @@ app.use(express.static(path.join(__dirname, './client/build')));
 
 var coffeeData = [
   {
-    id: 1,
     roaster: 'Verve',
     roasterLocation: 'Santa Cruz, CA',
     coffeeName: 'Jose Guzman',
     process: 'washed',
   },
   {
-    id: 2,
     roaster: 'Passenger',
     roasterLocation: 'Lancaster, PA',
     coffeeName: 'Gesha Village',
     process: 'natural',
   },
   {
-    id: 3,
     roaster: 'Cadenza',
     roasterLocation: 'Houston, TX',
     coffeeName: 'Colombia Huila',
@@ -47,15 +44,25 @@ var coffeeData = [
   }
 ];
 
-
 app.get('/coffees', (req, res) => {
 
   res.header('Access-Control-Allow-Origin', '*');
   console.log(coffeeData);
   // JSON.stringify(coffeeData);
   res.send(coffeeData);
+});
 
-  // MongoClient.connect("mongodb://localhost:27017/cc", function (err, db) {
+app.post('/add', (req, res) => {
+  console.log('logging the req.body from server: ', req.body);
+  res.status(200);
+});
+
+
+app.listen(port, () => {
+  console.log(`Coffee Crossing Server listening at http://localhost:${port}`);
+});
+
+// MongoClient.connect("mongodb://localhost:27017/cc", function (err, db) {
 
   //   if (err) throw err;
   //   var dbo = db.db("cc");
@@ -68,15 +75,3 @@ app.get('/coffees', (req, res) => {
 
   //   res.send(result);
   //res.sendFile(path.join(__dirname, './client/build/index.html'));
-
-});
-
-
-app.post('/'), (req, res) => {
-
-}
-
-
-app.listen(port, () => {
-  console.log(`Coffee Crossing Server listening at http://localhost:${port}`);
-});

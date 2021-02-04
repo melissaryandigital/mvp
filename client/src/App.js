@@ -20,6 +20,24 @@ class App extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
+    console.log('The STATE is: ', this.state);
+
+    const data = { username: 'example' };
+
+    fetch('http://localhost:7100/add', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
   }
 
@@ -30,20 +48,11 @@ class App extends React.Component {
     console.log(e.target.value)
 
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.roaster]: e.target.value
     })
-
   }
 
-
-
   componentDidMount() {
-
-    // const requestOptions = {
-    //   method:'POST',
-    //   body: JSON.stringify({roaster: "TEST"})
-    // }
-
     fetch('http://localhost:7100/coffees')
       .then(response => response.json())
       .then(json => {
@@ -52,10 +61,9 @@ class App extends React.Component {
   }
 
   render() {
-    //const {coffeeData} = this.state
     return (
       <div>
-        <h1>Coffee Crossing Yooo!</h1>
+        <h1>Coffee Crossing</h1>
         <div>
           <img src={Img} />
           <h2>Add your coffee!</h2>
@@ -77,7 +85,6 @@ class App extends React.Component {
             <tbody>
               {this.state.coffeeData.map(coffee =>
                 <tr>
-                  <td>{coffee.id}</td>
                   <td>{coffee.roaster}</td>
                   <td>{coffee.roasterLocation}</td>
                   <td>{coffee.coffeeName}</td>
@@ -92,5 +99,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-//<CoffeeForm />
