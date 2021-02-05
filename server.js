@@ -9,6 +9,8 @@ const fs = require('fs');
 
 const multer = require('multer');
 
+let coffeeData = require('./coffeeData.js');
+
 // Database
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect("mongodb://localhost:27017/cc", function (err, db) {
@@ -23,37 +25,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './client/build')));
 
 
-var coffeeData = [
-  {
-    roaster: 'Verve',
-    roasterLocation: 'Santa Cruz, CA',
-    coffeeName: 'Jose Guzman',
-    process: 'washed',
-  },
-  {
-    roaster: 'Passenger',
-    roasterLocation: 'Lancaster, PA',
-    coffeeName: 'Gesha Village',
-    process: 'natural',
-  },
-  {
-    roaster: 'Cadenza',
-    roasterLocation: 'Houston, TX',
-    coffeeName: 'Colombia Huila',
-    process: 'honey',
-  }
-];
+
 
 app.get('/coffees', (req, res) => {
 
   res.header('Access-Control-Allow-Origin', '*');
-  console.log(coffeeData);
-  // JSON.stringify(coffeeData);
   res.send(coffeeData);
 });
 
 app.post('/add', (req, res) => {
-  console.log('logging the req.body from server: ', req.body);
+  res.header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE');
+  coffeeData.push(req.body);
+  console.log('coffee data on server: ', coffeeData );
   res.status(200);
 });
 

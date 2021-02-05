@@ -10,19 +10,28 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      coffeeData: []
+      coffeeData: [],
+      newCoffee: {
+        roaster: '',
+        roasterLocation: '',
+        coffeeName: '',
+        process: ''
+      }
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
+
+    this.state.coffeeData.push(this.state.newCoffee);
+
+    const data = this.state.newCoffee;
 
     console.log('The STATE is: ', this.state);
-
-    const data = { username: 'example' };
 
     fetch('http://localhost:7100/add', {
       method: 'POST', // or 'PUT'
@@ -32,24 +41,21 @@ class App extends React.Component {
       body: JSON.stringify(data),
     })
       .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+      .then(data => console.log(data))
+      .then(this.setState({ data }));
 
   }
 
-  handleInputChange(e) {
-    e.preventDefault()
-    console.log(e);
-    console.log(e.target.name)
-    console.log(e.target.value)
+  handleInputChange(propertyName, e) {
+    e.preventDefault();
+    //console.log(e.target.name);
+    //console.log(e.target.value);
 
-    this.setState({
-      [e.target.roaster]: e.target.value
-    })
+    const newCoffee = this.state.newCoffee;
+    newCoffee[propertyName] = e.target.value;
+
+
+    this.setState({ newCoffee: newCoffee });
   }
 
   componentDidMount() {
@@ -68,11 +74,23 @@ class App extends React.Component {
           <img src={Img} />
           <h2>Add your coffee!</h2>
 
-          <form id="add" name="add" onSubmit={this.handleSubmit}>
+          <form id="addCoffee" name="addCoffee" onSubmit={this.handleSubmit}>
             <table id="coffeeInput">
               <tr>
                 <td><label>Coffee roaster</label>
-                  <input type="text" name="roaster" onChange={this.handleInputChange}></input></td>
+                  <input type="text" name="roaster" value={this.state.newCoffee.roaster} onChange={this.handleInputChange.bind(this, 'roaster')}></input></td>
+              </tr>
+              <tr>
+                <td><label>Roaster location</label>
+                  <input type="text" name="roasterLocation" value={this.state.newCoffee.roasterLocation} onChange={this.handleInputChange.bind(this, 'roasterLocation')}></input></td>
+              </tr>
+              <tr>
+                <td><label>Coffee Name</label>
+                  <input type="text" name="coffeeName" value={this.state.newCoffee.coffeeName} onChange={this.handleInputChange.bind(this, 'coffeeName')}></input></td>
+              </tr>
+              <tr>
+                <td><label>Process</label>
+                  <input type="text" name="process" value={this.state.newCoffee.process} onChange={this.handleInputChange.bind(this, 'process')}></input></td>
               </tr>
               <tr><td><button>Add new coffee!</button></td></tr>
             </table>
