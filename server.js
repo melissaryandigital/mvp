@@ -75,23 +75,17 @@ const Coffee = mongoose.model('Coffee', coffeeSchema);
 // });
 
 
-
-const xela = new Coffee({
-  roaster: 'Xela',
-  roasterLocation: 'Houston',
-  coffeeName: 'Honduras',
-  process: 'natural'
-});
-
-
-xela.save(function (err, xela) {
-  if (err) return console.error(err);
-})
+// const xela = new Coffee({
+//   roaster: 'Xela',
+//   roasterLocation: 'Houston',
+//   coffeeName: 'Honduras',
+//   process: 'natural'
+// });
 
 
-
-
-
+// xela.save(function (err, xela) {
+//   if (err) return console.error(err);
+// });
 
 app.get('/coffees', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -107,7 +101,23 @@ app.get('/coffees', (req, res) => {
 
 app.post('/add', (req, res) => {
   res.header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE');
-  coffeeData.push(req.body);
+
+  let addedCoffee = req.body.roaster;
+
+  addedCoffee = new Coffee(req.body);
+
+  addedCoffee.save(function (err, addedCoffee) {
+    if (err) return console.log(err);
+
+    console.log('added coffee saved: ', addedCoffee);
+  })
+  // roaster.save(function(err, roaster) {
+  //   if (err) return console.error(err);
+  // })
+
+  res.send(req.body);
+
+  //coffeeData.push(req.body);
   //console.log('coffee data on server: ', coffeeData );
   res.status(200);
 });
