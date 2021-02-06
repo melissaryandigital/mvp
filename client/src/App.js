@@ -62,6 +62,13 @@ class App extends React.Component {
       .then(json => {
         this.setState({ coffeeData: json });
       });
+
+
+    // fetch('http://localhost:7100/coffees')
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     this.setState({ coffeeData: json });
+    //   });
   }
 
   render() {
