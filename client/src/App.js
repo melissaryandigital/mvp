@@ -15,13 +15,14 @@ class App extends React.Component {
         roaster: '',
         roasterLocation: '',
         coffeeName: '',
-        process: ''
+        region: '',
+        process: '',
+        notes: '',
       }
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-
   }
 
   handleSubmit(e) {
@@ -62,26 +63,15 @@ class App extends React.Component {
       .then(json => {
         this.setState({ coffeeData: json });
       });
-
-
-    // fetch('http://localhost:7100/coffees')
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     this.setState({ coffeeData: json });
-    //   });
   }
 
   render() {
     return (
       <div>
         <h1>Coffee Crossing</h1>
-        <h2>A logbook for coffee lovers!</h2>
+        <h2>A logbook for coffee lovers</h2>
         <div>
-          {/* <img src={Img} /> */}
-
-
           <form id="addCoffee" name="addCoffee" onSubmit={this.handleSubmit}>
-
             <table id="coffeeInput">
               <tr><h3>Add a new coffee:</h3></tr>
               <tr>
@@ -93,12 +83,20 @@ class App extends React.Component {
                   <input type="text" name="roasterLocation" value={this.state.newCoffee.roasterLocation} onChange={this.handleInputChange.bind(this, 'roasterLocation')}></input></td>
               </tr>
               <tr>
-                <td><label>Coffee Name</label>
+                <td><label>Coffee name</label>
                   <input type="text" name="coffeeName" value={this.state.newCoffee.coffeeName} onChange={this.handleInputChange.bind(this, 'coffeeName')}></input></td>
+              </tr>
+              <tr>
+                <td><label>Region</label>
+                  <input type="text" name="region" value={this.state.newCoffee.region} onChange={this.handleInputChange.bind(this, 'region')}></input></td>
               </tr>
               <tr>
                 <td><label>Process</label>
                   <input type="text" name="process" value={this.state.newCoffee.process} onChange={this.handleInputChange.bind(this, 'process')}></input></td>
+              </tr>
+              <tr>
+                <td><label>Tasting notes</label>
+                  <input type="text" name="notes" value={this.state.newCoffee.notes} onChange={this.handleInputChange.bind(this, 'notes')}></input></td>
               </tr>
               <tr><td><button>Add new coffee!</button></td></tr>
             </table>
@@ -110,7 +108,9 @@ class App extends React.Component {
               <th>Coffee Roaster</th>
               <th>Roaster Location</th>
               <th>Coffee Name</th>
+              <th>Region</th>
               <th>Process</th>
+              <th>Tasting Notes</th>
             </thead>
             <tbody>
               {this.state.coffeeData.map(coffee =>
@@ -118,7 +118,9 @@ class App extends React.Component {
                   <td>{coffee.roaster}</td>
                   <td>{coffee.roasterLocation}</td>
                   <td>{coffee.coffeeName}</td>
+                  <td>{coffee.region}</td>
                   <td>{coffee.process}</td>
+                  <td>{coffee.notes}</td>
                 </tr>)}
             </tbody>
           </table>

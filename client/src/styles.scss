@@ -5,18 +5,20 @@ body {
   font-size: 18px;
   background-image: url('coffeefarm.jpg');
   font-family: 'Catamaran', sans-serif;
+  color: #262262;
 }
 
 .container {
   margin: 40px auto;
-  width: 50%;
+  width: 70%;
   border: 3px solid #fff;
-  padding:100px;
+  padding:50px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 h1{
   font-size: 50px;
-  margin-bottom:-20px;
+  margin: -40px 0px;
 }
 
 h2 {
@@ -36,6 +38,16 @@ img {
   width: 400px;
   padding:30px;
 
+  input[type=text], select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 2px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
   td {
     height: 30px;
   }
@@ -52,6 +64,7 @@ img {
 #myCoffees {
   background-color: #F6DADF;
   padding:30px;
+  text-align: left;
 
   th {
     text-align: left;
@@ -61,6 +74,9 @@ img {
 
   td {
     width: 300px;
+  }
+  td:last-child{
+    width: 20%
   }
 
 }

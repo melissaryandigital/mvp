@@ -13,7 +13,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './client/build')));
 
-let coffeeData = require('./coffeeData.js');
+// Non-persistant datastore
+//let coffeeData = require('./coffeeData.js');
 
 
 const mongoose = require('mongoose');
@@ -25,49 +26,22 @@ db.once('open', function(){
     console.log('connected!');
 });
 
-// const kittySchema = new mongoose.Schema({
-//   name: String
-// });
-
-// kittySchema.methods.speak = function() {
-//   const greeting = this.name
-//   ? "Meow name is " + this.name
-//   : "I don't have a name";
-//   console.log(greeting);
-// }
-
-// const Kitten = mongoose.model('Kitten', kittySchema);
-
-// const silence = new Kitten({name:'Silence'});
-// console.log(silence.name);
-
-// const fluffy = new Kitten({ name: 'fluffy'});
-// fluffy.speak();
-
-// fluffy.save(function(err, fluffy) {
-//   if (err) return console.error(err);
-//   fluffy.speak();
-// });
-
-// var find = Kitten.find(function(err, kittens) {
-//   if (err) return console.error(err);
-//   console.log(kittens);
-// });
-
-// Kitten.find({name:/^fluff/}, find);
-
 /*  Coffee Mongoose Setup */
-
 const coffeeSchema = new mongoose.Schema({
   roaster: String,
   roasterLocation: String,
   coffeeName: String,
-  process: String
+  region: String,
+  process: String,
+  notes: String,
 });
+
 
 const Coffee = mongoose.model('Coffee', coffeeSchema);
 
-
+// Coffee.remove({}, function(err) {
+//   console.log('collection removed');
+// })
 
 // Coffee.deleteMany({ roaster: 'Xela' }, function (err) {
 //   if(err) console.log(err);
@@ -75,15 +49,32 @@ const Coffee = mongoose.model('Coffee', coffeeSchema);
 // });
 
 
-// const xela = new Coffee({
-//   roaster: 'Xela',
-//   roasterLocation: 'Houston',
-//   coffeeName: 'Honduras',
-//   process: 'natural'
+// const passenger = new Coffee({
+//   roaster: 'Passenger',
+//   roasterLocation: 'Lancaster, PA',
+//   coffeeName: 'El Guayabal Gesha',
+//   region: 'Mexico',
+//   process: 'Washed',
+//   notes: 'Orchid, Dried Mango, Pomelo'
 // });
 
 
-// xela.save(function (err, xela) {
+// passenger.save(function (err, xela) {
+//   if (err) return console.error(err);
+// });
+
+
+// const cadenza = new Coffee({
+//   roaster: 'Cadenza Coffee Co.',
+//   roasterLocation: 'Houston, TX',
+//   coffeeName: 'Colombia Huila',
+//   region: 'Colombia',
+//   process: '',
+//   notes: 'Sweet, Nutty, Dark Chocolate'
+// });
+
+
+// cadenza.save(function (err, xela) {
 //   if (err) return console.error(err);
 // });
 
@@ -110,10 +101,7 @@ app.post('/add', (req, res) => {
     if (err) return console.log(err);
 
     console.log('added coffee saved: ', addedCoffee);
-  })
-  // roaster.save(function(err, roaster) {
-  //   if (err) return console.error(err);
-  // })
+  });
 
   res.send(req.body);
 
