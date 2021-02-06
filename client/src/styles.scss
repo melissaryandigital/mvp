@@ -2,8 +2,21 @@ $color: red;
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  background-color: #e4e0D5;
+  font-size: 18px;
+  background-image: url('coffeefarm.jpg');
+  font-family: 'Catamaran', sans-serif;
+}
+
+.container {
+  margin: 40px auto;
+  width: 50%;
+  border: 3px solid #fff;
+  padding:100px;
+}
+
+h1{
+  font-size: 50px;
+  margin-bottom:-20px;
 }
 
 h2 {
@@ -18,8 +31,10 @@ img {
   width: 400px;
 }
 
-#coffeeInput {
-  width: 500px;
+#coffeeInput{
+  background-color: #e4e0D5;
+  width: 400px;
+  padding:30px;
 
   td {
     height: 30px;
@@ -34,6 +49,19 @@ img {
   }
 }
 
-td {
-  width: 300px;
+#myCoffees {
+  background-color: #F6DADF;
+  padding:30px;
+
+  th {
+    text-align: left;
+    font-weight:bolder;
+    font-size: 20px;
+  }
+
+  td {
+    width: 300px;
+  }
+
 }
+

@@ -31,8 +31,6 @@ class App extends React.Component {
 
     const data = this.state.newCoffee;
 
-    console.log('The STATE is: ', this.state);
-
     fetch('http://localhost:7100/add', {
       method: 'POST', // or 'PUT'
       headers: {
@@ -70,12 +68,15 @@ class App extends React.Component {
     return (
       <div>
         <h1>Coffee Crossing</h1>
+        <h2>A logbook for coffee lovers!</h2>
         <div>
-          <img src={Img} />
-          <h2>Add your coffee!</h2>
+          {/* <img src={Img} /> */}
+
 
           <form id="addCoffee" name="addCoffee" onSubmit={this.handleSubmit}>
+
             <table id="coffeeInput">
+              <tr><h3>Add a new coffee:</h3></tr>
               <tr>
                 <td><label>Coffee roaster</label>
                   <input type="text" name="roaster" value={this.state.newCoffee.roaster} onChange={this.handleInputChange.bind(this, 'roaster')}></input></td>
@@ -96,9 +97,13 @@ class App extends React.Component {
             </table>
           </form>
 
-          <h2>What I've Tried:</h2>
-          <table>
+          <h3>Coffees I've Tried:</h3>
+          <table id="myCoffees">
             <thead>
+              <th>Coffee Roaster</th>
+              <th>Roaster Location</th>
+              <th>Coffee Name</th>
+              <th>Process</th>
             </thead>
             <tbody>
               {this.state.coffeeData.map(coffee =>
