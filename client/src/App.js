@@ -72,45 +72,40 @@ class App extends React.Component {
         <h2>A logbook for coffee lovers</h2>
         <div>
           <form id="addCoffee" name="addCoffee" onSubmit={this.handleSubmit}>
-            <table id="coffeeInput">
-              <tr><h3>Add a new coffee:</h3></tr>
+          <table id="coffeeInput">
               <tr>
                 <td><label>Coffee roaster</label>
                   <input type="text" name="roaster" value={this.state.newCoffee.roaster} onChange={this.handleInputChange.bind(this, 'roaster')}></input></td>
+                  <td><label>Region</label>
+                  <input type="text" name="region" value={this.state.newCoffee.region} onChange={this.handleInputChange.bind(this, 'region')}></input></td>
               </tr>
               <tr>
                 <td><label>Roaster location</label>
                   <input type="text" name="roasterLocation" value={this.state.newCoffee.roasterLocation} onChange={this.handleInputChange.bind(this, 'roasterLocation')}></input></td>
+                  <td><label>Process</label>
+                  <input type="text" name="process" value={this.state.newCoffee.process} onChange={this.handleInputChange.bind(this, 'process')}></input></td>
               </tr>
               <tr>
                 <td><label>Coffee name</label>
                   <input type="text" name="coffeeName" value={this.state.newCoffee.coffeeName} onChange={this.handleInputChange.bind(this, 'coffeeName')}></input></td>
-              </tr>
-              <tr>
-                <td><label>Region</label>
-                  <input type="text" name="region" value={this.state.newCoffee.region} onChange={this.handleInputChange.bind(this, 'region')}></input></td>
-              </tr>
-              <tr>
-                <td><label>Process</label>
-                  <input type="text" name="process" value={this.state.newCoffee.process} onChange={this.handleInputChange.bind(this, 'process')}></input></td>
-              </tr>
-              <tr>
-                <td><label>Tasting notes</label>
+                  <td><label>Tasting notes</label>
                   <input type="text" name="notes" value={this.state.newCoffee.notes} onChange={this.handleInputChange.bind(this, 'notes')}></input></td>
               </tr>
-              <tr><td><button>Add new coffee!</button></td></tr>
+              <tr><td>&nbsp;</td><td><button>Add new coffee</button></td></tr>
             </table>
           </form>
 
-          <h3>Coffees I've Tried:</h3>
+
           <table id="myCoffees">
             <thead>
+              <tr>
               <th>Coffee Roaster</th>
               <th>Roaster Location</th>
               <th>Coffee Name</th>
               <th>Region</th>
               <th>Process</th>
               <th>Tasting Notes</th>
+              </tr>
             </thead>
             <tbody>
               {this.state.coffeeData.map(coffee =>

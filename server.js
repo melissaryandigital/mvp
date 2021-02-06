@@ -39,44 +39,38 @@ const coffeeSchema = new mongoose.Schema({
 
 const Coffee = mongoose.model('Coffee', coffeeSchema);
 
-// Coffee.remove({}, function(err) {
-//   console.log('collection removed');
-// })
+Coffee.remove({}, function(err) {
+  console.log('collection removed');
+})
 
-// Coffee.deleteMany({ roaster: 'Xela' }, function (err) {
-//   if(err) console.log(err);
-//   console.log("Successful deletion");
-// });
-
-
-// const passenger = new Coffee({
-//   roaster: 'Passenger',
-//   roasterLocation: 'Lancaster, PA',
-//   coffeeName: 'El Guayabal Gesha',
-//   region: 'Mexico',
-//   process: 'Washed',
-//   notes: 'Orchid, Dried Mango, Pomelo'
-// });
+const passenger = new Coffee({
+  roaster: 'Passenger',
+  roasterLocation: 'Lancaster, PA',
+  coffeeName: 'El Guayabal Gesha',
+  region: 'Mexico',
+  process: 'Washed',
+  notes: 'Orchid, Dried Mango, Pomelo'
+});
 
 
-// passenger.save(function (err, xela) {
-//   if (err) return console.error(err);
-// });
+passenger.save(function (err, xela) {
+  if (err) return console.error(err);
+});
 
 
-// const cadenza = new Coffee({
-//   roaster: 'Cadenza Coffee Co.',
-//   roasterLocation: 'Houston, TX',
-//   coffeeName: 'Colombia Huila',
-//   region: 'Colombia',
-//   process: '',
-//   notes: 'Sweet, Nutty, Dark Chocolate'
-// });
+const cadenza = new Coffee({
+  roaster: 'Cadenza Coffee Co.',
+  roasterLocation: 'Houston, TX',
+  coffeeName: 'Colombia Huila',
+  region: 'Colombia',
+  process: '',
+  notes: 'Sweet, Nutty, Dark Chocolate'
+});
 
 
-// cadenza.save(function (err, xela) {
-//   if (err) return console.error(err);
-// });
+cadenza.save(function (err, xela) {
+  if (err) return console.error(err);
+});
 
 app.get('/coffees', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
